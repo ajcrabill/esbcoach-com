@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become an ESB Coach — esbcoach.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #B85042;
+      --cream: #E7E8D1;
+      --sage: #A7BEAE;
+      --brown: #3D1C02;
+      --light-cream: #F5F0E8;
+      --white: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-cream);
+      color: var(--brown);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background-color: var(--brown);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    nav .logo {
+      font-family: 'Merriweather', serif;
+      color: var(--cream);
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    nav ul li a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+    nav ul li a:hover { opacity: 1; }
+    nav ul li a.nav-cta {
+      background-color: var(--terracotta);
+      color: var(--white);
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    nav ul li a.nav-cta:hover { background-color: #a0433a; opacity: 1; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--brown) 0%, #5a2e10 100%);
+      color: var(--cream);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--cream);
+    }
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: var(--cream);
+      opacity: 0.88;
+      line-height: 1.7;
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* SECTION BLOCKS */
+    .section-block {
+      margin-bottom: 2.5rem;
+    }
+    .section-block h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.4rem;
+      color: var(--brown);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--sage);
+    }
+    .section-block h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.05rem;
+      color: var(--brown);
+      margin: 1.25rem 0 0.5rem;
+    }
+    .section-block p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #4a2e15;
+      margin-bottom: 0.75rem;
+    }
+    .section-block ul {
+      margin: 0.5rem 0 0.75rem 1.4rem;
+      font-size: 0.95rem;
+      color: #4a2e15;
+      line-height: 1.75;
+    }
+    .section-block ul li { margin-bottom: 0.3rem; }
+
+    /* COMPETENCY ACCORDION */
+    .competency-group {
+      border: 1px solid rgba(61,28,2,0.15);
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .competency-header {
+      background-color: var(--cream);
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Merriweather', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--brown);
+      user-select: none;
+      transition: background-color 0.2s;
+    }
+    .competency-header:hover { background-color: #d8dac0; }
+    .competency-header .toggle-icon {
+      font-size: 1.1rem;
+      color: var(--terracotta);
+      transition: transform 0.25s;
+    }
+    .competency-header.open .toggle-icon { transform: rotate(45deg); }
+    .competency-body {
+      display: none;
+      background: var(--white);
+      padding: 1rem 1.5rem 1.25rem;
+    }
+    .competency-body.open { display: block; }
+    .competency-body ol {
+      margin-left: 1.4rem;
+      font-size: 0.92rem;
+      color: #4a2e15;
+      line-height: 1.75;
+    }
+    .competency-body ol li { margin-bottom: 0.4rem; }
+
+    /* TIER TABLE */
+    .tier-table-wrap {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+    }
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .tier-table th {
+      background-color: var(--brown);
+      color: var(--cream);
+      padding: 0.65rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .tier-table th:not(:first-child) { text-align: center; }
+    .tier-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid rgba(61,28,2,0.1);
+      color: #4a2e15;
+      vertical-align: top;
+    }
+    .tier-table td:not(:first-child) { text-align: center; font-size: 1rem; }
+    .tier-table tr:nth-child(even) td { background-color: rgba(167,190,174,0.12); }
+    .tier-table tr:hover td { background-color: rgba(184,80,66,0.06); }
+    .check { color: var(--terracotta); font-weight: 700; }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--terracotta) 0%, #8e3328 100%);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .cta-block h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p { font-size: 0.95rem; opacity: 0.92; margin-bottom: 1.5rem; }
+    .cta-block a.cta-btn {
+      display: inline-block;
+      background-color: var(--white);
+      color: var(--terracotta);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .cta-block a.cta-btn:hover { background-color: var(--cream); }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--brown);
+      color: var(--cream);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">ESB Coach</a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/handbook.html">Get the Handbook</a></li>
+        <li><a href="/become-a-coach.html" class="nav-cta">Become a Coach</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow">Certification Program</p>
+    <h1>Become an ESB Coach</h1>
+    <p>Certification as a national ESB Coach lasts three years and requires a deep understanding of the Effective School Boards framework, the ability to demonstrate that understanding in practice, and the ability to support governance teams through its implementation.</p>
+  </section>
+
+  <main class="content">
+
+    <div class="section-block">
+      <h2>Overview</h2>
+      <p>These competencies are revealed through demonstrations of learning regarding:</p>
+      <ul>
+        <li>Governance Knowledge (GK 1–13)</li>
+        <li>Governance Skill (GS 1–11)</li>
+        <li>Governance Mindset (GM 1–4)</li>
+        <li>Coaching Knowledge (CK 1–7)</li>
+        <li>Coaching Skill (CS 1–6)</li>
+        <li>Coaching Mindset (CM 1–5)</li>
+      </ul>
+      <p>For those seeking <strong>SOFG certification</strong> as well, the one difference in requirements is the Affinity requirement: SOFG certification requires being a current/former school board member, current/former staff member, or a current resident of one of the CGCS member districts.</p>
+      <p>For those seeking <strong>LSG certification</strong> as well, the most challenging difference in requirements is the EISO requirement: LSG certification requires completing the Evaluating &amp; Improving Student Outcomes (EISO) course and passing the EISO quiz (80%+).</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Demonstrations of Learning</h2>
+      <p>The default DoL for knowledge competencies is a quad reviewed writing or video artifact. The default DoL for skills competencies is coach observation in-person or via a quad reviewed video artifact. The default DoL for mindset competencies is coach observation in-person or a quad reviewed video artifact.</p>
+      <p>When providing a <strong>written artifact</strong>, if summarizing a document (article or dissertation), the expectation is a ½–1 page summary. If summarizing a book, the expectation is 1–2 paragraphs per chapter.</p>
+      <p>When providing a <strong>video artifact</strong>, if demonstrating knowledge the expectation is a 1–2 minute explainer per competency. If demonstrating skill or mindset, it takes however long it takes per competency.</p>
+      <p>Alternative demonstrations of learning can be determined by a Senior Coach.</p>
+
+      <h3>Artifact Types</h3>
+      <ul>
+        <li><strong>Voice:</strong> All artifacts must be in your unique voice. The intention of certification is that you have mastered the competencies, not that you sound like other coaches.</li>
+        <li><strong>Quad Video:</strong> Four quadmates explain the required material. Multiple competencies can be covered in a single video, but each quadmate discusses one competency. All quadmates must ensure accuracy and completeness before submission.</li>
+        <li><strong>Quad Reviewed:</strong> All four quadmates submit individual artifacts, reviewed by the other three. If any artifact is inaccurate or incomplete, no quadmates receive credit.</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <h2>Tier Requirements</h2>
+      <div class="tier-table-wrap">
+        <table class="tier-table">
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Aspiring</th>
+              <th>Assistant</th>
+              <th>Certified</th>
+              <th>Senior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Complete all Governance Knowledge (GK)</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete at least 3 mindset practices</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Governance Skill (GS)</td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Governance Mindset (GM)</td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Coaching Knowledge (CK)</td>
+              <td></td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Coaching Skill (CS)</td>
+              <td></td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Coaching Mindset (CM)</td>
+              <td></td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Senior Coaching Knowledge (SCK)</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Senior Coaching Skill (SCS)</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Complete all Senior Coaching Mindset (SCM)</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.88rem; color:#7a5c40; margin-top:0.75rem;">Once Aspiring Coach level is met, candidates are considered "in the pipeline" for practicum opportunities. Starting Jan 1, 2025, Assistant Coach level can also be met by demonstrating 80% of all competencies.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Competency Requirements</h2>
+
+      <div class="competency-group">
+        <div class="competency-header" onclick="toggleSection(this)">
+          Governance Knowledge (GK 1–13)
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="competency-body">
+          <ol>
+            <li>Distinguish between inputs, outputs, and outcomes</li>
+            <li>Distinguish between adult outcomes and student outcomes</li>
+            <li>Distinguish between customer service and owner service</li>
+            <li>Distinguish between low and high quality goals</li>
+            <li>Distinguish between board work and superintendent work</li>
+            <li>Distinguish between board responsibility and board accountability</li>
+            <li>Distinguish between low and high quality monitoring reports</li>
+            <li>Summarize similarities and differences between policy governance principles and ESB</li>
+            <li>Summarize observations of at least 20 school board meetings from at least 5 different school boards and in at least 5 different states</li>
+            <li>Summarize observations of at least 2 ESB workshops led by at least 2 different ESB coaches</li>
+            <li>Summarize the similarities and differences of the accountability systems for school systems for five different states</li>
+            <li>Summarize the similarities and differences of the statutory frameworks for school boards for five different states</li>
+            <li>Individually summarize learnings from each of the following five ESB recommended readings: <em>Great On Their Behalf</em> (Chapters 1, 7, 8, 9 and 10), <em>Four Disciplines of Execution</em>, <em>Boards That Make A Difference</em>, <em>A Framework for School Governance</em>, <em>School District Leadership That Works</em></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="competency-group">
+        <div class="competency-header" onclick="toggleSection(this)">
+          Governance Skills (GS 1–11)
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="competency-body">
+          <ol>
+            <li>Communicate the difference between inputs, outputs, outcomes, and why it matters</li>
+            <li>Communicate the difference between adult outcomes and student outcomes, and why it matters</li>
+            <li>Distinguish between effective and ineffective goal monitoring</li>
+            <li>Conduct a time use evaluation for at least 3 school board meetings from at least 3 different school boards and in at least 3 different states</li>
+            <li>Conduct an agenda evaluation for at least 3 school board meetings from at least 3 different school boards and in at least 3 different states</li>
+            <li>Conduct a committee diet sample (at least 3 committees) for at least 3 different school boards and in at least 3 different states</li>
+            <li>Create a draft implementation timeline</li>
+            <li>Create a draft set of goals, guardrails, interim goals, and interim guardrails</li>
+            <li>Conduct a policy diet sample (at least 10 policies) for at least 3 different school boards and in at least 3 different states</li>
+            <li>Conduct a quarterly self evaluation sample for at least 3 different school boards and in at least 3 different states</li>
+            <li>Individually summarize learnings from four ESB recommended readings: <em>Great On Their Behalf</em> (Chapters 2, 11–17), <em>Policy Governance Consistency Framework</em>, <em>The Relationship Between School Board Governance Behaviors &amp; Student Achievement</em>, <em>Eight Characteristics of Effective School Boards</em></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="competency-group">
+        <div class="competency-header" onclick="toggleSection(this)">
+          Governance Mindset (GM 1–4)
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="competency-body">
+          <ol>
+            <li>Communicate why school systems exist</li>
+            <li>Communicate why school boards and why superintendents exist</li>
+            <li>Communicate the intention behind "student outcomes don't change until adult behaviors change"</li>
+            <li>Individually summarize learnings from five ESB recommended readings: <em>Great On Their Behalf</em> (Introduction and Chapters 3–6), <em>Leadership &amp; Self-Deception</em>, <em>Immunity To Change</em>, <em>School Governance Matters</em>, <em>Is Discord Detrimental</em></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="competency-group">
+        <div class="competency-header" onclick="toggleSection(this)">
+          Coaching Knowledge (CK 1–7)
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="competency-body">
+          <ol>
+            <li>Distinguish between feedback and criticism</li>
+            <li>Distinguish between project management and performance management</li>
+            <li>Distinguish between diagnostic, formative, interim, and summative assessment</li>
+            <li>Distinguish between norm-referenced and criterion-referenced assessment scoring</li>
+            <li>Distinguish between proficiency, growth, and comparison goal types</li>
+            <li>Distinguish between static and cohort goal types</li>
+            <li>Distinguish between low and high quality interim goals/interim guardrails</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="competency-group">
+        <div class="competency-header" onclick="toggleSection(this)">
+          Coaching Skills (CS 1–6)
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="competency-body">
+          <ol>
+            <li>Facilitate at least 2 conversations on Governance Knowledge 1–12 without a script</li>
+            <li>Facilitate at least 2 conversations on Governance Skills 1–9 without a script</li>
+            <li>Demonstrate the use of SCP &amp; ICP</li>
+            <li>Complete a Knowledge &amp; Skills workshop</li>
+            <li>Create a 1–3 page coaching recommendations memo for a board chair and superintendent based on observations spanning at least 3 months</li>
+            <li>Participate, under the guidance of a certified ESB Coach, in the support of at least three school boards</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="competency-group">
+        <div class="competency-header" onclick="toggleSection(this)">
+          Coaching Mindset (CM 1–5)
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="competency-body">
+          <ol>
+            <li>Complete a Mindset workshop (must complete at least 5 mindset practices within 14 days to be eligible)</li>
+            <li>Communicate the intention behind "I as Genesis"</li>
+            <li>Communicate the intention behind "Integrity as Access"</li>
+            <li>Facilitate at least 2 conversations on Governance Mindset 1–3 and Coaching Mindset 1–4 without a script</li>
+            <li>Effectively co-facilitate at least 1 ESB 2-day workshop (measured on Integrity, Knowledge/Skill accuracy, and Skill/Mindset as safe guide)</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-block">
+      <h2>Certification Life Cycle</h2>
+      <p>Certification competencies are reviewed annually. Changes are typically announced by November 1st and go into effect January 1st. Aspiring coaches in progress are typically afforded a 6-month hold harmless period to earn under former competencies.</p>
+    </div>
+
+    <div class="cta-block">
+      <h2>Ready to begin?</h2>
+      <p>Reach out to learn more about the ESB Coach certification process and next steps.</p>
+      <a href="mailto:coach@effectiveschoolboards.com" class="cta-btn">Email coach@effectiveschoolboards.com</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 airick journey crabill. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleSection(header) {
+      const body = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      header.classList.toggle('open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+    }
+  </script>
+
+</body>
+</html>
