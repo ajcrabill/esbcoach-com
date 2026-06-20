@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Effective School Board Coach — Handbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #B85042;
+      --cream: #E7E8D1;
+      --sage: #A7BEAE;
+      --brown: #3D1C02;
+      --light-cream: #F5F0E8;
+      --white: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-cream);
+      color: var(--brown);
+      line-height: 1.6;
+    }
+    /* NAV */
+    nav {
+      background-color: var(--brown);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    nav .logo {
+      font-family: 'Merriweather', serif;
+      color: var(--cream);
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    nav ul li a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+    nav ul li a:hover { opacity: 1; }
+    nav ul li a.nav-cta {
+      background-color: var(--terracotta);
+      color: var(--white);
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    nav ul li a.nav-cta:hover { background-color: #a0433a; opacity: 1; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--brown) 0%, #5a2e10 100%);
+      color: var(--cream);
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+    }
+    .hero .eyebrow {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: var(--cream);
+    }
+    .hero .author {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--sage);
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .coming-soon-badge {
+      display: inline-block;
+      background-color: var(--terracotta);
+      color: var(--white);
+      font-family: 'Merriweather', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      padding: 0.9rem 2.5rem;
+      border-radius: 6px;
+      letter-spacing: 0.03em;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .hero .description {
+      max-width: 660px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--cream);
+      opacity: 0.9;
+    }
+
+    /* FEATURES */
+    .features {
+      background-color: var(--cream);
+      padding: 4rem 2rem;
+    }
+    .features .inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 2rem;
+      border-top: 4px solid var(--terracotta);
+      box-shadow: 0 2px 12px rgba(61,28,2,0.07);
+    }
+    .feature-card h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 0.75rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #5a3e2b;
+      line-height: 1.65;
+    }
+
+    /* EMAIL CAPTURE */
+    .notify {
+      background-color: var(--light-cream);
+      padding: 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(61,28,2,0.1);
+    }
+    .notify h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.6rem;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+    .notify .subhead {
+      font-size: 0.95rem;
+      color: #7a5c40;
+      margin-bottom: 2rem;
+    }
+    .notify form {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto 1rem;
+    }
+    .notify form input[type="email"] {
+      flex: 1 1 240px;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--sage);
+      border-radius: 4px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.95rem;
+      background: var(--white);
+      color: var(--brown);
+      outline: none;
+    }
+    .notify form input[type="email"]:focus {
+      border-color: var(--terracotta);
+    }
+    .notify form button {
+      padding: 0.75rem 1.75rem;
+      background-color: var(--terracotta);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .notify form button:hover { background-color: #a0433a; }
+    .notify .success-msg {
+      display: none;
+      color: #3a6644;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+    .notify .fine-print {
+      font-size: 0.8rem;
+      color: #9a7a60;
+      margin-top: 0.5rem;
+    }
+
+    /* BACK LINK */
+    .back-section {
+      text-align: center;
+      padding: 2rem;
+    }
+    .back-section a {
+      color: var(--terracotta);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-section a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--brown);
+      color: var(--cream);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">ESB Coach</a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/handbook.html">Get the Handbook</a></li>
+        <li><a href="/become-a-coach.html" class="nav-cta">Become a Coach</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow">A Handbook for School Board Coaches</p>
+    <h1>The Effective School Board Coach</h1>
+    <p class="author">by airick journey crabill</p>
+    <div class="coming-soon-badge">Coming November 2026</div>
+    <p class="description">
+      The definitive handbook for practitioners who want to help school boards govern in the genuine interest of students. Covers the philosophical foundation, practical tools, and the mindset required to sustain lasting governance change.
+    </p>
+  </section>
+
+  <section class="features">
+    <div class="inner">
+      <div class="feature-card">
+        <h3>Philosophical Foundation</h3>
+        <p>Understanding why boards fail and what coaching can and cannot change. The conceptual grounding every effective school board coach must carry into every engagement.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Practical Tools</h3>
+        <p>The frameworks, conversation guides, and assessment approaches that move boards. Concrete instruments tested across districts and states to drive genuine governance improvement.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Mindset Requirements</h3>
+        <p>What coaches must embody to facilitate genuine governance change. The inner work that determines whether coaching produces lasting results or superficial compliance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="notify">
+    <h2>Be the first to know when it's available</h2>
+    <p class="subhead">Enter your email and we'll notify you the moment it's ready.</p>
+    <form id="notify-form" action="https://formspree.io/f/xayzdydv" method="POST">
+      <input type="hidden" name="form" value="esbcoach-handbook-notify">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="success-msg" id="success-msg">You're on the list. We'll email you when The Effective School Board Coach is available.</p>
+    <p class="fine-print">No spam. One email when it's ready.</p>
+  </section>
+
+  <div class="back-section">
+    <a href="/">← Back to esbcoach.com</a>
+  </div>
+
+  <footer>
+    <p>© 2026 airick journey crabill. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('notify-form');
+    const successMsg = document.getElementById('success-msg');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        }
+      } catch(err) {
+        // fallback: let it submit normally
+        form.submit();
+      }
+    });
+  </script>
+</body>
+</html>
